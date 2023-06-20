@@ -24,7 +24,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 text-center mb-5">
-        <a href="{{ .Site.BaseURL }}"><img src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }}"></a>
+        <a href="{{ .Site.BaseURL }}"><img src="{{ .Site.Params.logo | relURL }}" alt="{{ .Site.Title }}"></a>
       </div>
       {{ if or  .Site.Params.mobile .Site.Params.location .Site.Params.email }}         
       <div class="col-lg-3 col-sm-6 mb-5">
@@ -71,7 +71,7 @@
         <h6 class="mb-4">Quick Links</h6>
         <ul class="list-unstyled">
           {{ range .Site.Menus.footer }}
-          <li class="mb-3"><a class="text-dark" href="{{ .URL | absURL }}">{{ .Name }}</a></li>
+          <li class="mb-3"><a class="text-dark" href="{{ .URL | relURL }}">{{ .Name }}</a></li>
           {{ end }}
         </ul>
       </div>
@@ -83,16 +83,16 @@
 </footer>
 
 <script>
-  var indexURL = {{ "index.json" | absURL }}
+  var indexURL = {{ "index.json" | relURL }}
 </script>
 
 {{ "<!-- JS Plugins -->" | safeHTML }}
 {{ range .Site.Params.plugins.js}}
-<script src="{{ .URL | absURL }}"></script>
+<script src="{{ .URL | relURL }}"></script>
 {{ end }}
 {{ "<!-- Main Script -->" | safeHTML }}
 {{ $script := resources.Get "js/script.js" | minify}}
-<script src="{{ $script.Permalink }}"></script>
+<script src="{{ $script.RelPermalink }}"></script>
 
 
 <!-- cookie -->
